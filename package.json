@@ -1,0 +1,64 @@
+{
+  "name": "fba-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^3.3.7",
+    "convert-csv-to-json": "0.0.14",
+    "cors": "^2.8.5",
+    "csv": "^5.1.1",
+    "csv2json": "^1.4.2",
+    "csvjson": "^5.1.0",
+    "datatables.net": "^1.10.19",
+    "datatables.net-bs": "^1.10.19",
+    "datatables.net-dt": "^1.10.19",
+    "express": "^4.16.4",
+    "jquery": "^3.4.1",
+    "json-parser": "^1.1.5",
+    "mdbreact": "^4.14.0",
+    "nodemon": "^1.18.10",
+    "numeral": "^2.0.6",
+    "papaparse": "^4.6.3",
+    "react": "^16.8.2",
+    "react-csv-to-table": "0.0.1",
+    "react-dom": "^16.8.2",
+    "react-file-reader": "^1.1.4",
+    "react-fileupload-progress": "^0.4.2",
+    "react-inputs-validation": "^2.1.8",
+    "react-js-pagination": "^3.0.2",
+    "react-modal": "^3.8.1",
+    "react-owl-carousel": "^2.3.1",
+    "react-owl-carousel2": "^0.3.0",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^2.1.8",
+    "react-slick": "^0.24.0",
+    "react-slideshow-image": "^1.1.8",
+    "react-table": "^6.10.0",
+    "reactjs-input-validator": "^0.16.4",
+    "slick-carousel": "^1.8.1",
+    "typescript": "^3.3.3",
+    "wait-for-papa-parse": "^1.0.1"
+  },
+  "homepage": "http://35.168.99.29/fba-react",
+  "scripts": {
+    "start": "react-scripts start",
+    "server": "nodemon ./server",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "expose-loader": "^0.7.5"
+  }
+}
