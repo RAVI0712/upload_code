@@ -40,6 +40,7 @@ class NewproductcsvContent extends Component {
         super(props);
         this.state = {
             modalIsOpen: false,
+            errorMassage:'',
             price: 0,
             cost: 0,
             length: 0,
@@ -183,10 +184,11 @@ class NewproductcsvContent extends Component {
         const csv = this.state.csvfileinput;
         
         for (let i = 0; i < csv.length; i++) { 
-            
+            let select = csv[i].Select_Product_Category.toLowerCase();
+
             this.state.price = csv[i].Product_Selling_Price;
             this.state.cost = csv[i].Product_Cost;                    
-            this.state.select =csv[i].Select_Product_Category;
+            this.state.select = select;
             this.state.length = csv[i].length;
             this.state.width = csv[i].width;
             this.state.height = csv[i].height;
@@ -201,10 +203,69 @@ class NewproductcsvContent extends Component {
                  width : csv[i].width ,
                  height : csv[i].height ,
                  weight : csv[i].Product_Weight ,
-                 id : csv[i].Product_ID ,
+                 id : [i + 1],
                  weightType : csv[i].Weight_Unit }
             ]
             
+            if (this.state.select != 'amazon' && this.state.select != 'books' &&
+                this.state.select != 'camera' && this.state.select != 'cellphone' &&
+                this.state.select != 'consumer' && this.state.select != 'dvd' &&
+                this.state.select != 'mattress' && this.state.select != 'home' &&
+                this.state.select != 'kitchen' && this.state.select != 'music' &&
+                this.state.select != 'instrument' && this.state.select != 'office' &&
+                this.state.select != 'outdoors' && this.state.select != 'computers' &&
+                this.state.select != 'software' && this.state.select != 'sports' &&
+                this.state.select != 'tools' && this.state.select != 'toys' &&
+                this.state.select != 'unlocked' && this.state.select != 'consoles' &&
+                this.state.select != 'everythingElse' && this.state.select != 'baby'
+                ){
+                this.setState({
+                    modalIsOpen : true,
+                    errorMassage: 'Please enter correct product category',
+                })
+                return;
+            };
+            
+            if (this.state.price == '' || this.state.price == 0 ||
+                this.state.cost == '' || this.state.cost == 0 ||
+                this.state.select == '' || this.state.select == 0 ||
+                this.state.length == '' || this.state.length == 0 ||
+                this.state.width == '' || this.state.width == 0 ||
+                this.state.weight == '' || this.state.weight == 0 ||
+                this.state.height == '' || this.state.height == 0) {
+
+                this.setState({
+                    modalIsOpen : true,
+                    errorMassage: 'Please fill all the fields.',
+                })
+                return;
+            }
+
+            if (this.state.weightType != 'lb' && this.state.weightType != 'oz'){
+                this.setState({
+                    modalIsOpen : true,
+                    errorMassage: 'Please enter correct weight unit',
+                })
+                return;
+            };
+
+            
+            
+            if(
+                this.state.price != parseInt(this.state.price, 10) ||
+                this.state.cost != parseInt(this.state.cost, 10) ||
+                this.state.length != parseInt(this.state.length, 10) ||
+                this.state.width != parseInt(this.state.width, 10) ||
+                this.state.weight != parseInt(this.state.weight, 10) ||
+                this.state.height != parseInt(this.state.height, 10)
+            ){
+                this.setState({
+                    modalIsOpen : true,
+                    errorMassage: 'Please enter correct value',
+                })
+                return;
+            };
+
             if (this.state.totalFeesJanSept > 0) {
                 this.setState({
                   boxWeight: 0,
@@ -222,23 +283,7 @@ class NewproductcsvContent extends Component {
                   profitMarginOctDec: 0
                 });
             }
-            
-            
-            if (this.state.price == '' || this.state.price == 0 ||
-                this.state.cost == '' || this.state.cost == 0 ||
-                this.state.select == '' || this.state.select == 0 ||
-                this.state.length == '' || this.state.length == 0 ||
-                this.state.width == '' || this.state.width == 0 ||
-                this.state.weight == '' || this.state.weight == 0 ||
-                this.state.weightType == '' || this.state.weightType == 0 ||
-                this.state.height == '' || this.state.height == 0) {
 
-                this.setState({
-                    modalIsOpen : true,
-                })
-                return;
-            }
-            
             let dimensions = [Number(this.state.length), Number(this.state.width), Number(this.state.height)].sort((a, b) => {
                 return b - a;
             });
@@ -970,10 +1015,10 @@ class NewproductcsvContent extends Component {
                                         </thead>
 
                                         <tbody>
-                                            {this.state.csvfileinput.map(csv => {
+                                            {this.state.csvfileinput.map((csv, index) => {
                                                 return ( 
-                                                    <tr key={csv.Product_ID}>
-                                                        <td>{csv.Product_ID}</td>
+                                                    <tr key={index}>
+                                                        <td>{index + 1}</td>
                                                         <td>{csv.Select_Product_Category}</td>
                                                         <td>{csv.length}</td>
                                                         <td>{csv.width}</td>
@@ -1878,7 +1923,7 @@ class NewproductcsvContent extends Component {
                         <div className="modal_header">
                             <img src={sad_icon}/>
                             <h4>Error!</h4>
-                            <span>Please fill all the fields.</span>
+                            <span>{this.state.errorMassage}</span>
                             <span>Don't use zero values.</span>
                         </div>
                         <div className="modal_footer">
