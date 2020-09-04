@@ -19,7 +19,7 @@
     "mdbreact": "^4.14.0",
     "nodemon": "^1.18.10",
     "numeral": "^2.0.6",
-    "papaparse": "^4.6.3",
+    "papaparse": "^5.2.0",
     "react": "^16.8.2",
     "react-csv-to-table": "0.0.1",
     "react-dom": "^16.8.2",
