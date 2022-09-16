@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "convert-csv-to-json": "0.0.14",
     "cors": "^2.8.5",
     "csv": "^5.1.1",
